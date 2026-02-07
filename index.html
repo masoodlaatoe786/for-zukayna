@@ -14,7 +14,6 @@ background:linear-gradient(135deg,#ff758c,#ff7eb3);
 overflow:hidden;
 }
 
-/* AUDIO */
 audio{display:none;}
 
 /* ---------- PAGE 1 ---------- */
@@ -109,7 +108,7 @@ font-size:1.25em;
 line-height:1.7;
 }
 
-/* BIG NAV BUTTON */
+/* NAV BUTTON */
 .nextBtn{
 margin-top:35px;
 font-size:1.15em;
@@ -127,7 +126,7 @@ opacity:1;
 transform:scale(1.05);
 }
 
-/* ---------- SLIDE 3 (SPLIT, HEARTFELT ONLY) ---------- */
+/* ---------- SLIDE 3 (SPLIT) ---------- */
 .split{
 display:flex;
 gap:40px;
@@ -201,13 +200,12 @@ background:#ddd;
 position:absolute;
 }
 
-/* ---------- YES OVERLAY (DIM + BLUR) ---------- */
+/* ---------- YES OVERLAY ---------- */
 #yesOverlay{
 position:absolute;
 inset:0;
 background:rgba(0,0,0,0.65);
 backdrop-filter:blur(6px);
--webkit-backdrop-filter:blur(6px);
 display:flex;
 align-items:center;
 justify-content:center;
@@ -227,6 +225,43 @@ animation:heartFloat 4s ease forwards;
 0%{transform:translateY(20px) scale(0.8); opacity:0;}
 20%{opacity:0.8;}
 100%{transform:translateY(-120px) scale(1.4); opacity:0;}
+}
+
+/* ---------- MOBILE FIX ---------- */
+@media (max-width:768px){
+
+.slide{
+justify-content:flex-start;
+padding:20px;
+overflow-y:auto;
+}
+
+.slide img{
+max-height:45vh;
+width:auto;
+}
+
+.slide p{
+font-size:1.15em;
+margin-top:15px;
+}
+
+.nextBtn{
+margin:25px 0 40px;
+}
+
+.split{
+flex-direction:column;
+}
+
+.split img{
+max-height:40vh;
+}
+
+.page3-wrap{
+padding:20px;
+}
+
 }
 </style>
 </head>
@@ -251,7 +286,6 @@ animation:heartFloat 4s ease forwards;
 <!-- PAGE 2 -->
 <section id="page2">
 
-  <!-- SLIDE 1 -->
   <div class="slide active" id="slide1">
     <img src="first-day-main.jpeg">
     <p>
@@ -261,7 +295,6 @@ animation:heartFloat 4s ease forwards;
     <button class="nextBtn" onclick="nextSlide()">I’m still here →</button>
   </div>
 
-  <!-- SLIDE 2 -->
   <div class="slide" id="slide2">
     <img src="first-day-2.jpeg">
     <p>
@@ -271,23 +304,20 @@ animation:heartFloat 4s ease forwards;
     <button class="nextBtn" onclick="nextSlide()">I’m actually invested at this point →</button>
   </div>
 
-  <!-- SLIDE 3 -->
   <div class="slide" id="slide3">
     <div class="split">
       <img src="first-day-1.jpeg">
       <div class="split-text">
         <p>
-          I could literally write essays about you.<br><br>
           You’re strong, resilient, and deeply caring.<br><br>
-          No matter what the world throws at you, you always find a way to stand back up.
+          No matter what life throws at you, you always find a way to stand back up.
         </p>
         <p>
-          You inspire me to be better, to grow, and to show up properly —  
-          not because you ask me to, but because you deserve it.
+          You inspire me to grow, to do better, and to show up properly —
+          because you deserve the best version of me.
         </p>
       </div>
     </div>
-
     <button class="nextBtn" onclick="goToPage3()">There’s more? 🥹🥹🥹</button>
   </div>
 
@@ -301,7 +331,7 @@ animation:heartFloat 4s ease forwards;
     <div class="line3">The light to my dark moments.</div>
 
     <div class="line3">The reason behind my headaches 😂.</div>
-    <div class="line3">And somehow… still my favourite distraction.</div>
+    <div class="line3">And still my favourite distraction.</div>
 
     <div class="line3">You make life feel lighter just by being in it.</div>
     <div class="line3">You make me want to grow, do better, and show up properly.</div>
@@ -310,8 +340,7 @@ animation:heartFloat 4s ease forwards;
     <div class="line3">but for who I get to be with you.</div>
 
     <div class="line3" style="margin-top:20px;">
-      <strong>And honestly…</strong><br>
-      <strong>the love of my life.</strong>
+      <strong>The love of my life.</strong>
     </div>
 
     <div id="valentine-question">
@@ -361,12 +390,12 @@ p3.style.pointerEvents="auto";
 
 const lines=document.querySelectorAll(".line3");
 lines.forEach((line,i)=>{
-setTimeout(()=>{ line.style.opacity=1; }, i*1200);
+setTimeout(()=>line.style.opacity=1, i*1100);
 });
 
 setTimeout(()=>{
 document.getElementById("valentine-question").style.opacity=1;
-}, lines.length*1200 + 1200);
+}, lines.length*1100 + 1000);
 
 },1200);
 }
@@ -383,17 +412,11 @@ const overlay=document.createElement("div");
 overlay.id="yesOverlay";
 overlay.innerHTML=`
 <div style="text-align:center;color:white;">
-  <div style="font-size:1.8em;opacity:0;transition:opacity 1.5s ease;" id="yesLine1">
-    Thank you for choosing me.
-  </div>
-  <div style="font-size:1.6em;margin-top:15px;opacity:0;transition:opacity 1.5s ease;" id="yesLine2">
-    I’ll always choose you ❤️
-  </div>
+  <div style="font-size:1.9em;">Thank you for choosing me.</div>
+  <div style="font-size:1.6em;margin-top:15px;">I’ll always choose you ❤️</div>
 </div>`;
 document.body.appendChild(overlay);
 setTimeout(()=>overlay.style.opacity=1,100);
-setTimeout(()=>document.getElementById("yesLine1").style.opacity=1,800);
-setTimeout(()=>document.getElementById("yesLine2").style.opacity=1,2000);
 
 for(let i=0;i<6;i++){
 setTimeout(()=>{
@@ -411,3 +434,4 @@ setTimeout(()=>h.remove(),4000);
 
 </body>
 </html>
+
