@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Zukayna ❤️ Mas’ood</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+margin:0;
+height:100vh;
+font-family:"Segoe UI",sans-serif;
+background:linear-gradient(135deg,#ff758c,#ff7eb3);
+overflow:hidden;
+}
+
+/* AUDIO */
+audio{display:none;}
+
+/* ---------- PAGE 1 ---------- */
+#page1{
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:5;
+transition:opacity 1.2s ease;
+}
+
+.card{
+background:white;
+padding:40px;
+border-radius:25px;
+box-shadow:0 20px 50px rgba(0,0,0,.25);
+max-width:420px;
+text-align:center;
+}
+
+h1{color:#ff4d6d;font-size:2.5em;}
+p{color:#444;font-size:1.2em;}
+
+button{
+font-size:1.15em;
+padding:16px 34px;
+border-radius:35px;
+border:2px solid #ff4d6d;
+cursor:pointer;
+transition:.25s;
+background:white;
+}
+
+#startBtn{
+background:#ff4d6d;
+color:white;
+animation:pulse 1.4s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.1)}
+100%{transform:scale(1)}
+}
+
+/* ---------- PAGE 2 (SLIDES) ---------- */
+#page2{
+position:absolute;
+inset:0;
+background:linear-gradient(135deg,#d84f6a,#b93f6d);
+opacity:0;
+pointer-events:none;
+transition:opacity 1.5s ease;
+z-index:4;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.slide{
+position:absolute;
+inset:0;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:40px;
+opacity:0;
+pointer-events:none;
+transition:opacity 1.2s ease;
+}
+
+.slide.active{
+opacity:1;
+pointer-events:auto;
+}
+
+.slide img{
+max-width:300px;
+border-radius:22px;
+box-shadow:0 25px 50px rgba(0,0,0,.35);
+margin-bottom:25px;
+}
+
+.slide p{
+color:#2b2b2b;
+max-width:720px;
+font-size:1.25em;
+line-height:1.7;
+}
+
+/* BIG NAV BUTTON */
+.nextBtn{
+margin-top:35px;
+font-size:1.15em;
+padding:14px 28px;
+border-radius:30px;
+border:2px solid #333;
+background:transparent;
+cursor:pointer;
+opacity:.85;
+transition:.3s;
+}
+
+.nextBtn:hover{
+opacity:1;
+transform:scale(1.05);
+}
+
+/* ---------- SLIDE 3 (SPLIT, HEARTFELT ONLY) ---------- */
+.split{
+display:flex;
+gap:40px;
+align-items:center;
+justify-content:center;
+max-width:1000px;
+}
+
+.split img{
+max-width:260px;
+}
+
+.split-text{
+font-size:1.15em;
+line-height:1.65;
+color:#2b2b2b;
+max-width:500px;
+}
+
+/* ---------- PAGE 3 ---------- */
+#page3{
+position:absolute;
+inset:0;
+background:linear-gradient(135deg,#8b2f4f,#5e1f3a);
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0;
+pointer-events:none;
+transition:opacity 1.5s ease;
+z-index:6;
+color:white;
+text-align:center;
+}
+
+.page3-wrap{
+max-width:720px;
+padding:40px;
+}
+
+.line3{
+opacity:0;
+font-size:1.25em;
+margin:14px 0;
+transition:opacity 1.2s ease;
+}
+
+#valentine-question{
+opacity:0;
+font-size:2.8em;
+margin:40px 0 30px;
+transition:opacity 1.5s ease;
+}
+
+.p3-buttons button{
+font-size:1.15em;
+padding:16px 34px;
+border-radius:35px;
+border:none;
+cursor:pointer;
+margin:0 10px;
+}
+
+#yesVal{
+background:#ff4d6d;
+color:white;
+}
+
+#noVal{
+background:#ddd;
+position:absolute;
+}
+
+/* ---------- YES OVERLAY (DIM + BLUR) ---------- */
+#yesOverlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.65);
+backdrop-filter:blur(6px);
+-webkit-backdrop-filter:blur(6px);
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:10;
+opacity:0;
+transition:opacity 1.5s ease;
+}
+
+.yesHeart{
+position:absolute;
+font-size:40px;
+opacity:0;
+animation:heartFloat 4s ease forwards;
+}
+
+@keyframes heartFloat{
+0%{transform:translateY(20px) scale(0.8); opacity:0;}
+20%{opacity:0.8;}
+100%{transform:translateY(-120px) scale(1.4); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic">
+  <source src="abyss.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<section id="page1">
+  <div class="card">
+    <h1>Okay…</h1>
+    <p>This might be the smoothest thing I’ve ever done.</p>
+    <p>Or the most embarrassing.</p>
+    <p>Either way… stay.</p>
+    <button id="startBtn">Fine. I’m staying →</button>
+  </div>
+</section>
+
+<!-- PAGE 2 -->
+<section id="page2">
+
+  <!-- SLIDE 1 -->
+  <div class="slide active" id="slide1">
+    <img src="first-day-main.jpeg">
+    <p>
+      From the first moment I saw you,  
+      I knew you were going to be something special to me.
+    </p>
+    <button class="nextBtn" onclick="nextSlide()">I’m still here →</button>
+  </div>
+
+  <!-- SLIDE 2 -->
+  <div class="slide" id="slide2">
+    <img src="first-day-2.jpeg">
+    <p>
+      You’re beautiful, kind, caring, confident, funny —  
+      and you absolutely don’t take shit 😂.
+    </p>
+    <button class="nextBtn" onclick="nextSlide()">I’m actually invested at this point →</button>
+  </div>
+
+  <!-- SLIDE 3 -->
+  <div class="slide" id="slide3">
+    <div class="split">
+      <img src="first-day-1.jpeg">
+      <div class="split-text">
+        <p>
+          I could literally write essays about you.<br><br>
+          You’re strong, resilient, and deeply caring.<br><br>
+          No matter what the world throws at you, you always find a way to stand back up.
+        </p>
+        <p>
+          You inspire me to be better, to grow, and to show up properly —  
+          not because you ask me to, but because you deserve it.
+        </p>
+      </div>
+    </div>
+
+    <button class="nextBtn" onclick="goToPage3()">There’s more? 🥹🥹🥹</button>
+  </div>
+
+</section>
+
+<!-- PAGE 3 -->
+<section id="page3">
+  <div class="page3-wrap">
+
+    <div class="line3">You’re the calm to my chaos.</div>
+    <div class="line3">The light to my dark moments.</div>
+
+    <div class="line3">The reason behind my headaches 😂.</div>
+    <div class="line3">And somehow… still my favourite distraction.</div>
+
+    <div class="line3">You make life feel lighter just by being in it.</div>
+    <div class="line3">You make me want to grow, do better, and show up properly.</div>
+
+    <div class="line3">I love you — not just for who you are,</div>
+    <div class="line3">but for who I get to be with you.</div>
+
+    <div class="line3" style="margin-top:20px;">
+      <strong>And honestly…</strong><br>
+      <strong>the love of my life.</strong>
+    </div>
+
+    <div id="valentine-question">
+      Will you be my Valentine?
+    </div>
+
+    <div class="p3-buttons">
+      <button id="yesVal">YES ❤️</button>
+      <button id="noVal">No 😢</button>
+    </div>
+
+  </div>
+</section>
+
+<script>
+let currentSlide=1;
+
+/* START + MUSIC */
+document.getElementById("startBtn").addEventListener("click",()=>{
+const m=document.getElementById("bgMusic");
+m.currentTime=113;
+m.play();
+
+document.getElementById("page1").style.opacity=0;
+setTimeout(()=>{
+document.getElementById("page1").style.display="none";
+document.getElementById("page2").style.opacity=1;
+document.getElementById("page2").style.pointerEvents="auto";
+},1200);
+});
+
+/* SLIDES */
+function nextSlide(){
+document.getElementById("slide"+currentSlide).classList.remove("active");
+currentSlide++;
+document.getElementById("slide"+currentSlide).classList.add("active");
+}
+
+/* PAGE 3 */
+function goToPage3(){
+document.getElementById("page2").style.opacity=0;
+setTimeout(()=>{
+document.getElementById("page2").style.display="none";
+const p3=document.getElementById("page3");
+p3.style.opacity=1;
+p3.style.pointerEvents="auto";
+
+const lines=document.querySelectorAll(".line3");
+lines.forEach((line,i)=>{
+setTimeout(()=>{ line.style.opacity=1; }, i*1200);
+});
+
+setTimeout(()=>{
+document.getElementById("valentine-question").style.opacity=1;
+}, lines.length*1200 + 1200);
+
+},1200);
+}
+
+/* NO RUNS */
+document.getElementById("noVal").addEventListener("mouseover",e=>{
+e.target.style.left=Math.random()*(window.innerWidth-120)+"px";
+e.target.style.top=Math.random()*(window.innerHeight-120)+"px";
+});
+
+/* YES */
+document.getElementById("yesVal").addEventListener("click",()=>{
+const overlay=document.createElement("div");
+overlay.id="yesOverlay";
+overlay.innerHTML=`
+<div style="text-align:center;color:white;">
+  <div style="font-size:1.8em;opacity:0;transition:opacity 1.5s ease;" id="yesLine1">
+    Thank you for choosing me.
+  </div>
+  <div style="font-size:1.6em;margin-top:15px;opacity:0;transition:opacity 1.5s ease;" id="yesLine2">
+    I’ll always choose you ❤️
+  </div>
+</div>`;
+document.body.appendChild(overlay);
+setTimeout(()=>overlay.style.opacity=1,100);
+setTimeout(()=>document.getElementById("yesLine1").style.opacity=1,800);
+setTimeout(()=>document.getElementById("yesLine2").style.opacity=1,2000);
+
+for(let i=0;i<6;i++){
+setTimeout(()=>{
+const h=document.createElement("div");
+h.className="yesHeart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+h.style.bottom="20px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),4000);
+},i*600);
+}
+});
+</script>
+
+</body>
+</html>
